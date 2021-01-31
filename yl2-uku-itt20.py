@@ -4,7 +4,14 @@ Kodutöö 1
 '''
 __author__ = 'Uku-Kaarel Jõesaar'
 
-import os, sys, time, math, functools, winsound, random
+import os, sys, time, math, functools, random
+
+if os.name == 'nt':
+    import winsound
+
+
+
+
 
 def input_taisarv(msg, lenght=0, allowedl=[]):
     '''
@@ -53,7 +60,9 @@ https://www.journaldev.com/37089/how-to-compare-two-lists-in-python
 https://www.golinuxcloud.com/python-if-else-one-line/
 '''
 def bussid(inimeste_arv=-1, bussis_kohti=-1,printout=True):
-    print("\n\n")
+    print("""
+####                     Kui palju busse on vaja                         ###
+    """)
     if(inimeste_arv == -1):
         inimeste_arv = input_taisarv('Inimeste arv:')
     elif printout==True:
@@ -101,7 +110,7 @@ print(end='') if t[2]==3 and t[3]==3 else print('viga',t)
 t=bussid(inimeste_arv=103, bussis_kohti=40 ,printout=printout)
 print(end='') if t[2]==3 and t[3]==23 else print('viga',t)
 '''
-bussid()
+#bussid()
 
 
 
@@ -118,7 +127,8 @@ väljastab sama arv kordi ekraanile Tõuse ja sära!.
 
 def manivaldi_hommik(aratuste_arv=-1):
     if(aratuste_arv == -1):
-        aratuste_arv = input_taisarv("\n\nMitu korda Manivaldi äratada?")
+        aratuste_arv = input_taisarv("""###                      Manivaldi Äratuskell              #####
+Mitu korda Manivaldi äratada? """)
     aratamine_loop = 0
     while aratamine_loop < aratuste_arv:
         print('Tõuse ja sära!')
@@ -126,14 +136,14 @@ def manivaldi_hommik(aratuste_arv=-1):
         if os.name == 'nt':
             winsound.Beep(2500, 300) #Hz, ms
         else:
-            #print('\007')
             sys.stdout.write('\a')
             sys.stdout.flush()
         time.sleep(1)
         aratamine_loop += 1
 
 #manivaldi_hommik(3)
-manivaldi_hommik()
+#manivaldi_hommik()
+
 
 
 
@@ -172,7 +182,12 @@ janeste_systeem(8) #20 2+4+6+8
 janeste_systeem(9) #20 2+4+6+8
 janeste_systeem(12) #42 2+4+6+8+10+12
 '''
-janeste_systeem()
+#janeste_systeem()
+
+
+
+
+
 
 '''
 Erinevate täringumängude jaoks on vajalik erinev arv täringuid. Näiteks Yahtzee (Yatzy) jaoks on
@@ -192,7 +207,13 @@ Näited programmi tööst:
 
 def taringud():
     input_loop = 0
-    msg="\n\n###===                       TÄRINGUMASIN                ===###\nJätkamiseks sisestage täringute arv, katkestamiseks midagi muud\nMitu täringut visata?"
+    msg="""
+    
+    ###===                       TÄRINGUMASIN                ===###
+            Jätkamiseks sisestage täringute arv, 
+            katkestamiseks Q või mingi teine täht.
+    Mitu täringut visata? """
+    
     while input_loop == 0:
         arv = input(msg)
         if arv.isdigit():
@@ -203,7 +224,7 @@ def taringud():
             input_loop = 1
 
 
-taringud()
+#taringud()
 
 '''
 Lumivalgekesel oli 14 õuna ja ta tahtis neid pöialpoistega jagada. Ta sai aru, et kui kõik seitse
@@ -222,7 +243,13 @@ leiab ja väljastab eraldi reale, mitu õuna jääb Lumivalgekesele.
 
 def poialpoiste_ounad():
     input_loop = 0
-    msg="\n\n###===                                  ÕUNTE JAGAMINE                         ===###\nJätkamiseks sisestage õunu soovivate pöialpoiste arv(0-7), katkestamiseks midagi muud\nMitu neist õuna tahavad?"
+    poialpoiste_arv = 7
+    msg="""
+    
+    ###===                                  ÕUNTE JAGAMINE                         ===###
+            Jätkamiseks sisestage õunu soovivate pöialpoiste arv(0-7), 
+            katkestamiseks Q või mingi teine täht.
+    Mitu neist õuna tahavad? """
     while input_loop == 0:
         Lv_ounad = 14
         Pp_ounad = []
@@ -231,9 +258,9 @@ def poialpoiste_ounad():
         if arv.isdigit():
             arv = int(arv)
             if arv < 0:
-                arv = 0
-            elif arv > 7:
-                arv = 7
+                continue
+            elif arv > poialpoiste_arv:
+                continue
             for pp in range(1,int(arv)+1):
                 t_vise = random.randint(1,2)
                 Pp_ounad.append(t_vise)
@@ -246,4 +273,21 @@ def poialpoiste_ounad():
         print("    Lumivalgekesele jääb {0} õuna".format(Lv_ounad))
         
 
-poialpoiste_ounad()
+
+
+
+'''
+https://stackoverflow.com/questions/3061/calling-a-function-of-a-module-by-using-its-name-a-string
+'''
+yl_def_list =  ['bussid', 'manivaldi_hommik', 'janeste_systeem', 'taringud', 'poialpoiste_ounad']
+
+print('\n\nÜlesanded', yl_def_list, '\n')
+for yl_def in yl_def_list:
+    locals()[yl_def]()
+    yl_kasJatkata = input('Jätkamiseks vajuta Enter, Katkestamiseks Q ja Enter ')
+    if yl_kasJatkata=='':
+        continue
+    else:
+        if yl_kasJatkata != 'Q' or  yl_kasJatkata != 'q':
+            print("\n\n\nViga #None\nSisestasite tundmatu sümboli, programm jooksis kokku!\n\n\n")
+        break
