@@ -61,7 +61,7 @@ https://www.golinuxcloud.com/python-if-else-one-line/
 '''
 def bussid(inimeste_arv=-1, bussis_kohti=-1,printout=True):
     print("""
-####                     Kui palju busse on vaja                         ###
+###===              Kui palju busse on vaja                ===###
     """)
     if(inimeste_arv == -1):
         inimeste_arv = input_taisarv('Inimeste arv:')
@@ -127,7 +127,8 @@ väljastab sama arv kordi ekraanile Tõuse ja sära!.
 
 def manivaldi_hommik(aratuste_arv=-1):
     if(aratuste_arv == -1):
-        aratuste_arv = input_taisarv("""###                      Manivaldi Äratuskell              #####
+        aratuste_arv = input_taisarv("""
+    ###===                Manivaldi Äratuskell           ===####
 Mitu korda Manivaldi äratada? """)
     aratamine_loop = 0
     while aratamine_loop < aratuste_arv:
@@ -161,8 +162,12 @@ Näiteks, kui kasutaja sisestas 6, siis summa on 12, sest 2 + 4 + 6 = 12. Kui ka
 siis on summa samuti 12, sest 2 + 4 + 6 = 12.
 '''
 def janeste_systeem(ringide_arv=-1):
+    print("""
+    ###===              Jänkude porgandijagaja             ===###
+
+""")
     if(ringide_arv == -1):
-        ringide_arv = input_taisarv("\n\nMitu ringi jänkupoeg tegi: ")
+        ringide_arv = input_taisarv("Mitu ringi jänkupoeg tegi:  ")
 
     saab_porgandit = 0
     paaris_ringid  = 0
@@ -209,7 +214,7 @@ def taringud():
     input_loop = 0
     msg="""
     
-    ###===                       TÄRINGUMASIN                ===###
+    ###===                       TÄRINGUMASIN              ===###
             Jätkamiseks sisestage täringute arv, 
             katkestamiseks Q või mingi teine täht.
     Mitu täringut visata? """
@@ -284,10 +289,13 @@ yl_def_list =  ['bussid', 'manivaldi_hommik', 'janeste_systeem', 'taringud', 'po
 print('\n\nÜlesanded', yl_def_list, '\n')
 for yl_def in yl_def_list:
     locals()[yl_def]()
-    yl_kasJatkata = input('Jätkamiseks vajuta Enter, Katkestamiseks Q ja Enter ')
+    yl_kasJatkata = input('Jätkamiseks vajuta Enter, Katkestamiseks Q ja Enter \n')
     if yl_kasJatkata=='':
         continue
     else:
-        if yl_kasJatkata != 'Q' or  yl_kasJatkata != 'q':
+        if yl_kasJatkata == 'Q' or  yl_kasJatkata == 'q':
+            print("\n\n\nProgramm lõpetab\n\n\n")
+            break
+        else:
             print("\n\n\nViga #None\nSisestasite tundmatu sümboli, programm jooksis kokku!\n\n\n")
         break
