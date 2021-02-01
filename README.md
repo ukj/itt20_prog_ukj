@@ -2,7 +2,7 @@
 
 Kodune töö
 
-
+<pre><code>
 Ülesanded ['bussid', 'manivaldi_hommik', 'janeste_systeem', 'taringud', 'poialpoiste_ounad'] 
 
 
@@ -23,3 +23,4 @@ Jätkamiseks vajuta Enter, Katkestamiseks Q ja Enter
 
 Viga #None
 Sisestasite tundmatu sümboli, programm jooksis kokku!
+</code></pre>
